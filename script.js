@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const CANVAS_SIZE = [1800, 2250];
   const FRAME_PATH = 'frame.png';
 
+  let imageKey = null; // Global within DOMContentLoaded
   let frameImage = new Image();
   let userImage = null;
   let isFrameLoaded = false;
@@ -113,6 +114,12 @@ downloadBtn.onclick = async function () {
   // Download locally
   downloadFile(dataURL, "Attending Graphics.png");
 
+if (!imageKey) {
+        console.log("No image uploaded.");
+        return;
+    }
+
+  
   // Check if already uploaded in this session
   if (!sessionStorage.getItem(imageKey)) {
     const formData = new FormData();
