@@ -105,10 +105,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     placeholderText.style.display='none';
   }
 
-  downloadBtn.onclick = function () {
+
+downloadBtn.onclick = async function () {
   const dataURL = canvas.toDataURL("image/png");
 
- // Save to Google Drive
+  // Save to Google Drive
   const formData = new FormData();
 formData.append("image", dataURL);
 
@@ -119,8 +120,8 @@ await fetch(
     body: formData
   }
 );
-
-  downloadFile(dataURL, "Family Reatreat Attending.png");
+  // Download locally
+  downloadFile(dataURL, "Attending Graphics.png");
 };
 
 function isIOS() {
