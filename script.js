@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   imageUpload.addEventListener('change', e => {
     const file = e.target.files[0];
     if(!file) return;
-    const imageKey = `${file.name}_${file.size}_${file.lastModified}`;
+    imageKey = `${file.name}_${file.size}_${file.lastModified}`;
     const reader = new FileReader();
     reader.onload = async e => {
       const img = new Image();
