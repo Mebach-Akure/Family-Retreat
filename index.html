@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Retreat || I will be attending</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <center><h4>Mercy Seat English Baptist Church, Akure</h4></center>
+        <h1>I WILL BE ATTENDING - 2026 FAMILY RETREAT</h1>
+
+        <div class="controls">
+            <label for="imageUpload">Upload Your Picture:</label>
+           <!-- <Input id='nameInput' type='text' placeholder='Enter Your Name'> -->
+            <input type="file" id="imageUpload" accept="image/*">
+            <div class="rotate-controls">
+              <button id="rotateLeft">⟲ Rotate Left</button>
+              <button id="rotateRight">⟳ Rotate Right</button>
+            </div>
+            <div class="zoom-controls">
+              <input type="range" id="zoomSlider" min="1" max="3" value="1" step="0.01">
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="graphicCanvas" width="1800" height="2250"></canvas>
+            <p class="placeholder-text">Upload an image to see the preview.</p>
+        </div>
+
+        <button id="downloadBtn" disabled>Download Graphic </button>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
