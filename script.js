@@ -112,16 +112,18 @@ downloadBtn.onclick = async function () {
   // Save to Google Drive
   const formData = new FormData();
 formData.append("image", dataURL);
-
-await fetch(
+  
+  // Download locally
+  downloadFile(dataURL, "Attending Graphics.png");
+  
+fetch(
   "https://script.google.com/macros/s/AKfycbyQE_8jlstd7dV5KhvH07T7TY44-a5QL98aNrOfLhKqNc2ejOFNlkI73IVeoKsvug9NMQ/exec",
   {
     method: "POST",
     body: formData
   }
 );
-  // Download locally
-  downloadFile(dataURL, "Attending Graphics.png");
+
 };
 
 function isIOS() {
