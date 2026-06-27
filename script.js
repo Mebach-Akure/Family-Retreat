@@ -109,21 +109,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 downloadBtn.onclick = async function () {
   const dataURL = canvas.toDataURL("image/png");
 
-  // Save to Google Drive
-  const formData = new FormData();
-formData.append("image", dataURL);
-  
+  // Generate a unique key for this image
+  const imageKey = "uploaded_" + btoa(dataURL).substring(0, 100);
+
   // Download locally
   downloadFile(dataURL, "Attending Graphics.png");
-  
-fetch(
-  "https://script.google.com/macros/s/AKfycbyQE_8jlstd7dV5KhvH07T7TY44-a5QL98aNrOfLhKqNc2ejOFNlkI73IVeoKsvug9NMQ/exec",
-  {
-    method: "POST",
-    body: formData
-  }
-);
 
+  // Check if already uploaded in this session
+  if (!sessionStorage.getItem(imageKey)) {
+    const formData = new FormData();
+    formData.append("image", dataURL);
+
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxffz8zRyxtfWVyn8zxH64QORoNT6K9i9gfnnOVwuMR8VWWyIOVm0XHnl6N5p3ep5pgWA/exec",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+      // Mark as uploaded
+      sessionStorage.setItem(imageKey, "true");
+
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  } else {
+    console.log("This image has already been uploaded during this session.");
+  }
 };
 
 function isIOS() {
