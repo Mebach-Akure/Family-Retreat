@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   imageUpload.addEventListener('change', e => {
     const file = e.target.files[0];
     if(!file) return;
+    const imageKey = `${file.name}_${file.size}_${file.lastModified}`;
     const reader = new FileReader();
     reader.onload = async e => {
       const img = new Image();
@@ -108,9 +109,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 downloadBtn.onclick = async function () {
   const dataURL = canvas.toDataURL("image/png");
-
-  // Generate a unique key for this image
-  const imageKey = "uploaded_" + btoa(dataURL).substring(0, 100);
 
   // Download locally
   downloadFile(dataURL, "Attending Graphics.png");
